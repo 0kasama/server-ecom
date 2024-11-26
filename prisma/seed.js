@@ -1,18 +1,18 @@
-const prisma = require("../lib/prisma");
-const axios = require("axios");
-const path = require("path");
-const slugify = require("slugify");
-const { hashPassword } = require("../lib/bcrypt.js");
+const prisma = require('../lib/prisma');
+const axios = require('axios');
+const path = require('path');
+const slugify = require('slugify');
+const { hashPassword } = require('../lib/bcrypt.js');
 
-require("dotenv").config({
-  path: path.resolve(__dirname, "../.env"),
+require('dotenv').config({
+  path: path.resolve(__dirname, '../.env'),
 });
 
 const main = async () => {
   try {
     // Seeding City
     const { data } = await axios.get(
-      "https://api.rajaongkir.com/starter/city",
+      'https://api.rajaongkir.com/starter/city',
       {
         headers: {
           key: process.env.RAJAONGKIR_API_KEY,
@@ -34,18 +34,18 @@ const main = async () => {
     // Seeding User
     const users = [
       {
-        fullname: "developer",
-        email: "developer@mail.com",
-        password: hashPassword("postgres"),
-        phone_number: "+62812091820938934",
-        role: "USER",
+        fullname: 'developer',
+        email: 'dev@mail.com',
+        password: hashPassword('dev123'),
+        phone_number: '+62812091820938934',
+        role: 'USER',
       },
       {
-        fullname: "admin",
-        email: "admin@mail.com",
-        password: hashPassword("postgres"),
-        phone_number: "+62812091823434594",
-        role: "ADMIN",
+        fullname: 'admin',
+        email: 'admin@mail.com',
+        password: hashPassword('admin123'),
+        phone_number: '+62812091823434594',
+        role: 'ADMIN',
       },
     ];
 
@@ -56,13 +56,13 @@ const main = async () => {
     // Seeding Categories
     const categories = [
       {
-        name: "Food",
+        name: "Mom's",
       },
       {
-        name: "Clothing",
+        name: "Baby's",
       },
       {
-        name: "Medicine",
+        name: 'Equipment',
       },
     ];
 
@@ -73,11 +73,11 @@ const main = async () => {
     // Seeding Stores
     const store = {
       city_id: 153,
-      name: "Baby Store",
-      bank_name: "BCA",
-      bank_account: "091823089239834",
-      street_address: "Jl Example",
-      province: "Jakarta Selatan",
+      name: 'Baby Store',
+      bank_name: 'BCA',
+      bank_account: '123456789',
+      street_address: 'Jl Example',
+      province: 'Jakarta Selatan',
       postal_code: 123520,
     };
 
@@ -88,15 +88,112 @@ const main = async () => {
     // Seeding Products
     const products = [
       {
-        name: "Popok Bayi",
-        slug: slugify("Popok Bayi"),
-        sku: "BB-101",
-        stock: 2000,
-        price: 200000,
-        weight: 2500,
-        image: "",
-        description: "",
+        name: 'Eve Maternity Pregnancy Belt',
+        slug: slugify('Eve Maternity Pregnancy Belt', {lower: true}),
+        sku: 'AA-101',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/pregnancy-belt-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 1,
+      },
+      {
+        name: 'Eve Maternity Nursing Dress',
+        slug: slugify('Eve Maternity Nursing Dress', {lower: true}),
+        sku: 'AA-102',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/nursing-dress-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 1,
+      },
+      {
+        name: 'Eve Maternity Pregnancy Legging',
+        slug: slugify('Eve Maternity Pregnancy Legging', {lower: true}),
+        sku: 'AA-103',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/pregnancy-legging-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 1,
+      },
+      {
+        name: 'Fransisca Renaldy Toodler Shoes',
+        slug: slugify('Fransisca Renaldy Toodler Shoes', {lower: true}),
+        sku: 'BB-101',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/toodler-shoes-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
         category_id: 2,
+      },
+      {
+        name: 'Cool Kids Baby Dress',
+        slug: slugify('Cool Kids Baby Dress', {lower: true}),
+        sku: 'BB-102',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/baby-dress-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 2,
+      },
+      {
+        name: 'Banana Baby Jumper',
+        slug: slugify('Banana Baby Jumper', {lower: true}),
+        sku: 'BB-103',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/baby-jumper-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 2,
+      },
+      {
+        name: 'Mooimom Hipseat',
+        slug: slugify('Mooimom Hipseat', {lower: true}),
+        sku: 'CC-101',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/hipseat-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 3,
+      },
+      {
+        name: 'Maxi Cosi Stroller',
+        slug: slugify('Maxi Cosi Stroller', {lower: true}),
+        sku: 'CC-102',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/stroller-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 3,
+      },
+      {
+        name: 'Playmat',
+        slug: slugify('Playmat', {lower: true}),
+        sku: 'CC-103',
+        stock: 100,
+        price: 100000,
+        weight: 500,
+        image: 'http://localhost:5000/api/v1/images/playmat-1.webp',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mollis elit in iaculis faucibus. Integer laoreet maximus odio, ac gravida sapien bibendum vel. Nulla pulvinar.',
+        category_id: 3,
       },
     ];
 
@@ -105,18 +202,18 @@ const main = async () => {
     // Seeding Address
     const addresses = [
       {
-        title: "Rumah",
+        title: 'Rumah',
         city_id: 153,
-        street_address: "Jl Senopati",
-        province: "Jakarta Selatan",
+        street_address: 'Jl Senopati',
+        province: 'Jakarta Selatan',
         postal_code: 14350,
         user_id: 1,
       },
       {
-        title: "Kantor",
+        title: 'Kantor',
         city_id: 153,
-        street_address: "Jl Fatmawati",
-        province: "Jakarta Selatan",
+        street_address: 'Jl Fatmawati',
+        province: 'Jakarta Selatan',
         postal_code: 14298,
         user_id: 1,
       },
@@ -128,16 +225,16 @@ const main = async () => {
     const carts = {
       user_id: 1,
       store_id: 1,
-      total_price: 200000,
-      courier: "jne",
-      total_weight: 2500,
-      shipping_method: "REGULER",
+      total_price: 100000,
+      courier: 'JNE',
+      total_weight: 500,
+      shipping_method: 'REGULER',
       shipping_cost: 30000,
       cart_items: {
         create: {
           product_id: 1,
           quantity: 1,
-          price: 200000,
+          price: 100000,
         },
       },
     };
@@ -157,15 +254,15 @@ const main = async () => {
       user_id: 1,
       store_id: 1,
       shipping_cost: 30000,
-      shipping_method: "REGULER",
-      courier: "jne",
-      total_weight: 2500,
-      total_price: 200000,
+      shipping_method: 'REGULER',
+      courier: 'JNE',
+      total_weight: 500,
+      total_price: 100000,
       order_items: {
         create: {
           product_id: 1,
           quantity: 1,
-          price: 200000,
+          price: 100000,
         },
       },
     };
@@ -176,7 +273,7 @@ const main = async () => {
       user_id: 1,
       product_id: 1,
       rating: 5,
-      comments: "Mantabbbb",
+      comments: 'Mantabbbb',
     };
 
     await prisma.reviews.create({ data: reviews });
