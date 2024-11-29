@@ -37,14 +37,14 @@ const main = async () => {
         fullname: 'developer',
         email: 'dev@mail.com',
         password: hashPassword('dev123'),
-        phone_number: '+62812091820938934',
+        phone_number: '62812091820938934',
         role: 'USER',
       },
       {
         fullname: 'admin',
         email: 'admin@mail.com',
         password: hashPassword('admin123'),
-        phone_number: '+62812091823434594',
+        phone_number: '62812091823434594',
         role: 'ADMIN',
       },
     ];
