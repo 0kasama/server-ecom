@@ -127,8 +127,6 @@ model Stores {
   bank_account   String?
   phone_number   String?
   street_address String?
-  province       String?
-  postal_code    Int?
   created_at     DateTime @default(now())
   updated_at     DateTime @default(now()) @updatedAt
 }
@@ -190,8 +188,6 @@ model Addresses {
   city           Cities   @relation(fields: [city_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   city_id        Int
   street_address String?
-  province       String?
-  postal_code    Int?
   Order          Orders[]
   created_at     DateTime @default(now())
   updated_at     DateTime @default(now()) @updatedAt
@@ -208,10 +204,13 @@ model Wishlists {
 }
 
 model Cities {
-  id         Int         @id @default(autoincrement())
-  address    Addresses[]
-  store      Stores[]
-  name       String
-  created_at DateTime    @default(now())
-  updated_at DateTime    @default(now()) @updatedAt
+  id              Int         @id @default(autoincrement())
+  address         Addresses[]
+  store           Stores[]
+  name            String
+  province_id     Int
+  province_name   String
+  postal_code     Int
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @default(now()) @updatedAt
 }

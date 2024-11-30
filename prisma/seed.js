@@ -24,6 +24,9 @@ const main = async () => {
       return {
         id: +item.city_id,
         name: item.city_name,
+        province_id: +item.province_id,
+        province_name: item.province,
+        postal_code: +item.postal_code,
       };
     });
 
@@ -77,8 +80,6 @@ const main = async () => {
       bank_name: 'BCA',
       bank_account: '123456789',
       street_address: 'Jl Example',
-      province: 'Jakarta Selatan',
-      postal_code: 123520,
     };
 
     await prisma.stores.create({
@@ -89,7 +90,7 @@ const main = async () => {
     const products = [
       {
         name: 'Eve Maternity Pregnancy Belt',
-        slug: slugify('Eve Maternity Pregnancy Belt', {lower: true}),
+        slug: slugify('Eve Maternity Pregnancy Belt', { lower: true }),
         sku: 'AA-101',
         stock: 100,
         price: 100000,
@@ -101,7 +102,7 @@ const main = async () => {
       },
       {
         name: 'Eve Maternity Nursing Dress',
-        slug: slugify('Eve Maternity Nursing Dress', {lower: true}),
+        slug: slugify('Eve Maternity Nursing Dress', { lower: true }),
         sku: 'AA-102',
         stock: 100,
         price: 100000,
@@ -113,7 +114,7 @@ const main = async () => {
       },
       {
         name: 'Eve Maternity Pregnancy Legging',
-        slug: slugify('Eve Maternity Pregnancy Legging', {lower: true}),
+        slug: slugify('Eve Maternity Pregnancy Legging', { lower: true }),
         sku: 'AA-103',
         stock: 100,
         price: 100000,
@@ -125,7 +126,7 @@ const main = async () => {
       },
       {
         name: 'Fransisca Renaldy Toodler Shoes',
-        slug: slugify('Fransisca Renaldy Toodler Shoes', {lower: true}),
+        slug: slugify('Fransisca Renaldy Toodler Shoes', { lower: true }),
         sku: 'BB-101',
         stock: 100,
         price: 100000,
@@ -137,7 +138,7 @@ const main = async () => {
       },
       {
         name: 'Cool Kids Baby Dress',
-        slug: slugify('Cool Kids Baby Dress', {lower: true}),
+        slug: slugify('Cool Kids Baby Dress', { lower: true }),
         sku: 'BB-102',
         stock: 100,
         price: 100000,
@@ -149,7 +150,7 @@ const main = async () => {
       },
       {
         name: 'Banana Baby Jumper',
-        slug: slugify('Banana Baby Jumper', {lower: true}),
+        slug: slugify('Banana Baby Jumper', { lower: true }),
         sku: 'BB-103',
         stock: 100,
         price: 100000,
@@ -161,7 +162,7 @@ const main = async () => {
       },
       {
         name: 'Mooimom Hipseat',
-        slug: slugify('Mooimom Hipseat', {lower: true}),
+        slug: slugify('Mooimom Hipseat', { lower: true }),
         sku: 'CC-101',
         stock: 100,
         price: 100000,
@@ -173,7 +174,7 @@ const main = async () => {
       },
       {
         name: 'Maxi Cosi Stroller',
-        slug: slugify('Maxi Cosi Stroller', {lower: true}),
+        slug: slugify('Maxi Cosi Stroller', { lower: true }),
         sku: 'CC-102',
         stock: 100,
         price: 100000,
@@ -185,7 +186,7 @@ const main = async () => {
       },
       {
         name: 'Playmat',
-        slug: slugify('Playmat', {lower: true}),
+        slug: slugify('Playmat', { lower: true }),
         sku: 'CC-103',
         stock: 100,
         price: 100000,
@@ -205,16 +206,12 @@ const main = async () => {
         title: 'Rumah',
         city_id: 153,
         street_address: 'Jl Senopati',
-        province: 'Jakarta Selatan',
-        postal_code: 14350,
         user_id: 1,
       },
       {
         title: 'Kantor',
         city_id: 153,
         street_address: 'Jl Fatmawati',
-        province: 'Jakarta Selatan',
-        postal_code: 14298,
         user_id: 1,
       },
     ];
