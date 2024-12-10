@@ -7,7 +7,11 @@ const findAll = async (params) => {
       user_id: user_id,
     },
     include: {
-      city: true,
+      city: {
+        include: {
+          province: true,
+        },
+      },
     },
   });
 

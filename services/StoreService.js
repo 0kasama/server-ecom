@@ -1,7 +1,15 @@
-const prisma = require("../lib/prisma");
+const prisma = require('../lib/prisma');
 
-const findAll = async (params) => {
-  const data = await prisma.stores.findMany();
+const findAll = async () => {
+  const data = await prisma.stores.findMany({
+    include: {
+      city: {
+        include: {
+          province: true,
+        },
+      },
+    },
+  });
   return data;
 };
 
@@ -15,8 +23,8 @@ const findOne = async (params) => {
 
   if (!data) {
     throw {
-      name: "ErrorNotFound",
-      message: "data not found",
+      name: 'ErrorNotFound',
+      message: 'data not found',
     };
   }
   return data;
@@ -45,7 +53,7 @@ const update = async ({ id, data }) => {
     },
   });
   if (!findOne) {
-    throw { name: "ErrorNotFound" };
+    throw { name: 'ErrorNotFound' };
   }
   const result = await prisma.stores.update({
     where: {
@@ -70,7 +78,7 @@ const destroy = async (id) => {
     where: { id: +id },
   });
   if (!result) {
-    throw { name: "ErrorNotFound" };
+    throw { name: 'ErrorNotFound' };
   }
   const data = await prisma.stores.delete({
     where: {
