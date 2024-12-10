@@ -1,5 +1,4 @@
 const prisma = require("../lib/prisma");
-require("dotenv").config();
 
 const updateItems = async (params) => {
   console.log(params, "params");

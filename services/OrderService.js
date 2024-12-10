@@ -2,7 +2,6 @@ const prisma = require("../lib/prisma");
 const { sendInvoiceEmail } = require("../lib/nodemailer");
 const { createPdf } = require("../lib/pdfkit");
 const paginate = require("../lib/pagination.js");
-require("dotenv").config();
 const SORT_LIST = [
   "created_at desc",
   "created_at asc",
