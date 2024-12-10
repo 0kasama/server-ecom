@@ -1,17 +1,33 @@
 const prisma = require('../lib/prisma');
 const axios = require('axios');
-const path = require('path');
 const slugify = require('slugify');
 const { hashPassword } = require('../lib/bcrypt.js');
 
-require('dotenv').config({
-  path: path.resolve(__dirname, '../.env'),
-});
-
 const main = async () => {
   try {
+    // Seeding Province
+    const { data: provinceData } = await axios.get(
+      'https://api.rajaongkir.com/starter/province',
+      {
+        headers: {
+          key: process.env.RAJAONGKIR_API_KEY,
+        },
+      }
+    );
+
+    const provinces = provinceData.rajaongkir.results.map((item) => {
+      return {
+        id: +item.province_id,
+        name: item.province,
+      };
+    });
+
+    await prisma.provinces.createMany({
+      data: provinces,
+    });
+
     // Seeding City
-    const { data } = await axios.get(
+    const { data: cityData } = await axios.get(
       'https://api.rajaongkir.com/starter/city',
       {
         headers: {
@@ -20,12 +36,11 @@ const main = async () => {
       }
     );
 
-    const cities = data.rajaongkir.results.map((item) => {
+    const cities = cityData.rajaongkir.results.map((item) => {
       return {
         id: +item.city_id,
         name: item.city_name,
         province_id: +item.province_id,
-        province_name: item.province,
         postal_code: +item.postal_code,
       };
     });
