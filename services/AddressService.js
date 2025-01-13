@@ -1,4 +1,4 @@
-const prisma = require("../lib/prisma");
+const prisma = require('../lib/prisma');
 
 const findAll = async (params) => {
   const user_id = +params;
@@ -12,6 +12,9 @@ const findAll = async (params) => {
           province: true,
         },
       },
+    },
+    orderBy: {
+      created_at: 'desc',
     },
   });
 
@@ -32,8 +35,8 @@ const findOne = async (params) => {
 
   if (!address) {
     throw {
-      name: "ErrorNotFound",
-      message: "Data Not Found",
+      name: 'ErrorNotFound',
+      message: 'Data Not Found',
     };
   }
 
@@ -49,8 +52,8 @@ const create = async ({ user_id, params }) => {
 
   if (!city) {
     throw {
-      name: "ErrorNotFound",
-      message: "City Not Found",
+      name: 'ErrorNotFound',
+      message: 'City Not Found',
     };
   }
   const address = await prisma.addresses.create({
@@ -76,8 +79,8 @@ const update = async (params) => {
 
   if (!id) {
     throw {
-      name: "ErrorNotFound",
-      message: "Data Not Found",
+      name: 'ErrorNotFound',
+      message: 'Data Not Found',
     };
   }
 
@@ -104,8 +107,8 @@ const destroy = async (params) => {
 
   if (!data) {
     throw {
-      name: "ErrorNotFound",
-      message: "Data Not Found",
+      name: 'ErrorNotFound',
+      message: 'Data Not Found',
     };
   }
 
