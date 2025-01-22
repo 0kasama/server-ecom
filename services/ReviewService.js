@@ -1,8 +1,7 @@
-const prisma = require("../lib/prisma");
+const prisma = require('../lib/prisma');
 
 const findAll = async (params) => {
   const data = params;
-  console.log(data, "<<<<<<<params>>>>>>>");
   const reviews = await prisma.reviews.findMany({
     where: data,
     include: {
@@ -11,6 +10,9 @@ const findAll = async (params) => {
           fullname: true,
         },
       },
+    },
+    orderBy: {
+      created_at: 'desc',
     },
   });
   return reviews;
@@ -32,7 +34,7 @@ const findOne = async (params) => {
   });
 
   if (!review) {
-    throw { name: "ErrorNotFound", message: "Review not found" };
+    throw { name: 'ErrorNotFound', message: 'Review not found' };
   }
 
   return review;
@@ -49,7 +51,7 @@ const create = async (params) => {
   });
 
   if (!foundProduct) {
-    throw { name: "ErrorNotFound", message: "Product not found" };
+    throw { name: 'ErrorNotFound', message: 'Product not found' };
   }
 
   const review = await prisma.reviews.create({
@@ -78,7 +80,7 @@ const update = async (params) => {
   });
 
   if (!foundReview) {
-    throw { name: "ErrorNotFound", message: "Review not found" };
+    throw { name: 'ErrorNotFound', message: 'Review not found' };
   }
 
   const review = await prisma.reviews.update({
@@ -102,7 +104,7 @@ const destroy = async (params) => {
   });
 
   if (!foundReview) {
-    throw { name: "ErrorNotFound", message: "Review not found" };
+    throw { name: 'ErrorNotFound', message: 'Review not found' };
   }
 
   const review = await prisma.reviews.delete({
