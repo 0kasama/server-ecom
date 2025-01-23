@@ -3,10 +3,11 @@ const reviewService = require("../services/ReviewService");
 const findAll = async (req, res, next) => {
   try {
     const query = {};
-    if (req.query.item_id) {
-      query.order_item_id = parseInt(req.query.item_id);
-    } else if (req.query.id) {
-      query.product_id = parseInt(req.query.id);
+    if (req.query.order_item_id) {
+      query.order_item_id = parseInt(req.query.order_item_id);
+    }
+    if (req.query.product_id) {
+      query.product_id = parseInt(req.query.product_id);
     }
     const review = await reviewService.findAll(query);
     res.status(200).json(review);
