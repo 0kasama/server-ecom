@@ -1,7 +1,6 @@
 const prisma = require("../lib/prisma");
 
 const updateItems = async (params) => {
-  console.log(params, "params");
   const order = await prisma.order_Items.update({
     where: {
       id: params.id,

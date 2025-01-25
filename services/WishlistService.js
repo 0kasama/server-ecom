@@ -26,7 +26,6 @@ const findOne = async (params) => {
 };
 
 const create = async (params) => {
-  console.log(params, "<<<<<<<<<<");
   const wishlist = await prisma.wishlists.create({
     data: {
       user_id: params.user,

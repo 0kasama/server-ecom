@@ -11,7 +11,6 @@ const findAll = async (req, res, next) => {
 
 const findOne = async (req, res, next) => {
   try {
-    console.log(req.params.id);
     const data = await storeService.findOne(req.params);
     res.json(data);
   } catch (err) {
